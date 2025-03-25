@@ -30,3 +30,21 @@ function show(){
     console.log(functionVar); // Lance une ReferenceError
     console.log(functionLet); // Lance une ReferenceError
     console.log(functionConst); // Lance une ReferenceError
+
+
+
+{
+    var papy = 58;
+    let berta = 26;
+    const ali = "Merci pour ce cours";
+    papy = 100;
+    berta = 35;
+}
+
+var papy = 200;
+let berta = 70;
+const ali = "Bonsoir";
+
+console.log(papy);
+console.log(berta);
+console.log(ali);
