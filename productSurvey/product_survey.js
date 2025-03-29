@@ -17,8 +17,15 @@ const job = document.getElementById('job').value;
 const designation = document.getElementById('designation').value;
 const productType = document.getElementById('productType').value;
 const feedback = document.getElementById('feedbackText').value;
+const userExperince = document.getElementById('userExperince').value;
 
 const submitButton=document.getElementById('submitBtn');
 
 submitButton.onclick = submitFeedback;
 
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      submitFeedback();
+    }
+  });
+ 
