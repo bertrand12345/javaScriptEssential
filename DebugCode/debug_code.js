@@ -1,31 +1,45 @@
-    
-    function performOperation() {
+function performOperation() {
     // Get user input from input fields
-    let num1 = parseInt(document.getElementById('input1').value);
-    let num2 = parseInt(document.getElementById('input2').value);
+    let num1 = parseFloat(document.getElementById('input1').value);
+    let num2 = parseFloat(document.getElementById('input2').value);
+
     // Check if inputs are valid numbers
     if (!isNaN(num1) && !isNaN(num2)) {
-    // Perform the operation
-                    let result = multiply(num1, num2);
+        // Perform operations
+        let additionResult = add(num1, num2);
+        let multiplicationResult = multiply(num1, num2);
+        let divisionResult = divide(num1, num2);
 
-                    // Display the result
-                    displayResult(result);
-                } else {
-                    displayResult('Please enter valid numbers');
-                }
-            }
+        // Display all results
+        let output = `
+            Addition : ${additionResult} <br>
+            Multiplication : ${multiplicationResult} <br>
+            Division : ${divisionResult}
+        `;
+        displayResult(output);
+    } else {
+        displayResult('Veuillez entrer deux nombres valides.');
+    }
+}
 
-            function multiply(a, b) {
-                // Introduce a debugger statement to pause execution
-                debugger;
+function add(a, b) {
+    return a + b;
+}
 
-                // Multiply the numbers
-                return a * b;
-            }
+function multiply(a, b) {
+    // debugger; // Tu peux activer le débogueur si nécessaire
+    debugger;
+    return a * b;
+}
 
-            function displayResult(result) {
-                // Display the result in the paragraph element
-                const resultElement = document.getElementById('result');
-                resultElement.textContent = `Le resultat est: ${result}`;
-            }
-        
+function divide(a, b) {
+    if (b === 0) {
+        return 'Division par zéro impossible';
+    }
+    return a / b;
+}
+
+function displayResult(result) {
+    const resultElement = document.getElementById('result');
+    resultElement.innerHTML = `Le résultat est : <br>${result}`;
+}
