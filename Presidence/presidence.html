@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Vote Anonyme - Président</title>
+    <link rel="stylesheet" href="vote.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Élection Présidentielle</h1>
+        <p id="instructions">Veuillez choisir un candidat. Chaque membre ne peut voter qu'une seule fois.</p>
+
+        <form id="voteForm">
+            <label><input type="radio" name="candidate" value="Candidat A" required> Candidat A</label><br>
+            <label><input type="radio" name="candidate" value="Candidat B"> Candidat B</label><br>
+            <label><input type="radio" name="candidate" value="Candidat C"> Candidat C</label><br><br>
+
+            <button type="submit">Voter</button>
+        </form>
+
+        <div id="confirmation" class="hidden">Merci pour votre vote !</div>
+
+        <div id="resultats" class="hidden">
+            <h2>Résultats</h2>
+            <p>Candidat A : <span id="votesA">0</span></p>
+            <p>Candidat B : <span id="votesB">0</span></p>
+            <p>Candidat C : <span id="votesC">0</span></p>
+        </div>
+    </div>
+
+    <script>
+        const voteForm = document.getElementById("voteForm");
+        const confirmation = document.getElementById("confirmation");
+        const resultats = document.getElementById("resultats");
+        let hasVoted = false;
+        let voteCount = 0;
+
+        const votes = {
+            "Candidat A": 0,
+            "Candidat B": 0,
+            "Candidat C": 0
+        };
+
+        voteForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            if (hasVoted) return;
+
+            const choix = document.querySelector('input[name="candidate"]:checked').value;
+            votes[choix]++;
+            voteCount++;
+
+            voteForm.classList.add("hidden");
+            confirmation.classList.remove("hidden");
+            hasVoted = true;
+
+            if (voteCount >= 30) {
+                afficherResultats();
+            }
+        });
+
+        function afficherResultats() {
+            document.getElementById("votesA").textContent = votes["Candidat A"];
+            document.getElementById("votesB").textContent = votes["Candidat B"];
+            document.getElementById("votesC").textContent = votes["Candidat C"];
+            resultats.classList.remove("hidden");
+        }
+    </script>
+</body>
+</html>
